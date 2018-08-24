@@ -1,0 +1,60 @@
+{
+  "name": "barebones-webpack-hmr-express-react",
+  "version": "1.0.0",
+  "description": "Barebones Webpack HMR Express React",
+  "author": "jamie young <jmeyoung@gmail.com>",
+  "private": true,
+  "main": "server.js",
+  "scripts": {
+    "clean:build": ".scripts/clean build",
+    "clean": ".scripts/clean",
+    "start": ".scripts/start"
+  },
+  "engines": {
+    "node": "10.9.0"
+  },
+  "os": [
+    "darwin",
+    "linux"
+  ],
+  "dependencies": {
+    "express": "4.16.3",
+    "nconf": "0.10.0",
+    "prop-types": "15.6.2",
+    "react": "16.4.2",
+    "react-dom": "16.4.2",
+    "react-router-dom": "4.3.1"
+  },
+  "devDependencies": {
+    "babel-core": "6.26.3",
+    "babel-loader": "7.1.5",
+    "babel-preset-env": "1.7.0",
+    "babel-preset-react": "6.24.1",
+    "css-loader": "1.0.0",
+    "html-webpack-plugin": "3.2.0",
+    "style-loader": "0.22.1",
+    "webpack": "4.17.1",
+    "webpack-cli": "3.1.0",
+    "webpack-dev-middleware": "3.2.0",
+    "webpack-hot-middleware": "2.22.3"
+  },
+  "license": "MIT",
+  "babel": {
+    "presets": [
+      "env",
+      "react"
+    ]
+  },
+  "prettier": {
+    "printWidth": 100,
+    "tabWidth": 2,
+    "useTabs": false,
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "none",
+    "bracketSpacing": false,
+    "jsxBracketSameLine": true,
+    "arrowParens": "avoid",
+    "proseWrap": "always"
+  }
+}

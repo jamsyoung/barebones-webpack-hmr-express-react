@@ -1,0 +1,53 @@
+#!/bin/bash
+# shellcheck disable=SC1091
+
+set -o errexit   # Exit immediately if a pipeline returns a non-zero status (set -e)
+
+# Usage: clean [build|install]
+# $ clean build     # only delete the BUILD remnants
+# $ clean install   # only delete the INSTALL remnants
+# $ clean           # no arguments, delete all remnants
+
+
+if [[ -z "${1}" ]]; then
+  scope=(build install)
+else
+  if [[ "${1}" =~ ^(build|install)$ ]]; then
+    scope=("${1}")
+  else
+    printf "Usage: clean [build|install]\\n"
+    printf "Defaults to clean all remnants with no arguments"
+  fi
+fi
+
+column_width=26
+package_name=$(jq -r .name package.json)
+
+. .scripts/colors.sh
+declare good_mark grey magenta red reset
+
+function delete_files() {
+  for item in "$@"; do
+    printf "${magenta}%${column_width}s${reset}: " "${item}"
+    rm -rf "${item}"
+    echo "${good_mark} ${red}DELETE${reset} ${grey}${PWD}/${item}${reset}"
+  done
+}
+
+for scope_type in "${scope[@]}"; do
+  printf "\\nCleaning %s remnants for %s\\n" "${scope_type}" "${package_name}"
+  printf "%100s\\n" '' | tr ' ' ─
+
+  case "${scope_type}" in
+    build)
+      remnants=( dist/ )
+      delete_files "${remnants[@]}"
+      ;;
+
+    install)
+      remnants=( node_modules/ package-lock.json )
+      delete_files "${remnants[@]}"
+      ;;
+  esac
+done
+

@@ -1,0 +1,9 @@
+body {
+  font-family: HelveticaNeue, 'Helvetica Neue', sans-serif;
+  font-size: 13px;
+  min-width: 320px;
+}
+
+#mount {
+  height: 100%;
+}

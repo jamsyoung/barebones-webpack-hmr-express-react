@@ -1,0 +1,11 @@
+#!/bin/bash
+# shellcheck disable=SC1091
+
+set -o errexit
+
+# Usage: start-ssr (nodemon|node)
+
+.scripts/clean build
+export PORT=8080
+. .scripts/env.sh
+node server.js
